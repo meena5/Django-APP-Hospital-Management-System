@@ -1,0 +1,42 @@
+{% extends 'navigation_bar.html' %}
+
+{% load static %}
+
+{% block body %}
+
+
+<div class="container" style="margin-top:50px;">
+    <br><br>
+    <h2 class="text-center">Add Doctor</h2>
+    <form method="POST" action="">
+        {% csrf_token %}
+        <label>Doctor Name</label>
+        <input type="text" class="form-control" name="name" required>
+
+        <label>Contact</label>
+        <input type="text" class="form-control" name="contact" required>
+
+        <label>specialization</label>
+        <input type="text" class="form-control" name="specialization" required>
+        <br>
+        <input type="submit" value="Submit" class="form-control btn btn-primary" >
+    </form>
+</div>
+
+{% ifequal error "no" %}
+<script>
+    alert('Record Saved Successfully');
+    window.location=('{% url "view_doctor" %}');
+</script>
+{% endifequal %}
+
+{% ifequal error "yes" %}
+
+<script>
+    alert('Something Went Wrong ,Try Again');
+</script>
+
+{% endifequal %}
+
+
+{% endblock %}
